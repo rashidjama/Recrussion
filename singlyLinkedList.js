@@ -45,25 +45,35 @@ class SinglyLinkedList {
   }
   // shift Method Class
   shift() {
-    if(!this.head) return undefined;
     let removedHead = this.head;
-    this.head = this.head.next;
+    this.head = removedHead.next;
     this.length--;
-    if(this.length === 0) {
-      this.head = null;
-      this.tail = null;
-    }
     return removedHead;
+  }
+  // Unshift Method Class
+  unshift(val) {
+    let newNode = new Node(val);
+    if(!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      let oldHead = this.head;
+      let newHead = newNode;
+      this.head = newHead;
+      this.head.next = oldHead;
+      this.length++;
+      return this;
+    }
   }
 }
 
 let myList = new SinglyLinkedList();
-myList.push('Emran');
+myList.push('rashid');
 myList.push('ali');
 myList.push('Jama');
 
-myList.shift();
-myList.shift();
-myList.shift();
-console.log(myList)
 
+console.log('###############################')
+myList.unshift('Emran')
+console.log(myList.length-1)
+console.log('################################');
