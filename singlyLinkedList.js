@@ -65,15 +65,69 @@ class SinglyLinkedList {
       return this;
     }
   }
+  get(index) {
+    if(index < 0 || index >= this.length) return null;
+    var counter = 0;
+    var current = this.head;
+    while(counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
+    get(index) {
+    if(index < 0 || index >= this.length) return null;
+    var counter = 0;
+    var current = this.head;
+    while(counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
+  set(index, val) {
+    let foundNode = this.get(index);
+    if(foundNode) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
+
+  }
+
+  insert(index, val) {
+    if(index < 0 || index > this.length) return false;
+    if(index === 0) return !!this.unshift(val);
+    if(index === this.length) return !!this.push(val);
+
+    let newNode = new Node(val);
+    let preNode = this.get(index - 1);
+    let temp = preNode.next;
+    preNode.next = newNode;
+    newNode.next = temp
+    this.length ++;
+    return true;
+  }
+  remove(index) {
+    if(index < 0 || index >= this.length) return 'undefined';
+    if(index === 0) return this.shift();
+    if(index === this.length-1) return this.pop();
+
+    let prev = this.get(index -1);
+    let removed = prev.next;
+    prev.next = removed.next;
+    this.length --;
+    return removed;
+  }
 }
 
 let myList = new SinglyLinkedList();
 myList.push('rashid');
 myList.push('ali');
 myList.push('Jama');
+myList.push('Emran');
+myList.push('Ayman');
+myList.push('Khadija');
 
+console.log(myList.tail)
 
-console.log('###############################')
-myList.unshift('Emran')
-console.log(myList.length-1)
-console.log('################################');
