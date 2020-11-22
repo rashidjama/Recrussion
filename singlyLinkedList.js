@@ -119,15 +119,39 @@ class SinglyLinkedList {
     this.length --;
     return removed;
   }
+  print() {
+    let arr = [];
+    let current = this.head;
+    while(current) {
+      arr.push(current.val)
+      current = current.next
+    }
+    console.log(arr)
+  }
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let prev = null;
+    let next;
+    for(let i=0; i<this.length;i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this
+  }
 }
 
 let myList = new SinglyLinkedList();
-myList.push('rashid');
-myList.push('ali');
-myList.push('Jama');
-myList.push('Emran');
-myList.push('Ayman');
-myList.push('Khadija');
+myList.push(1);
+myList.push(2);
+myList.push(3);
+myList.push(4);
+myList.push(5);
+myList.reverse()
+console.log(myList.print())
 
-console.log(myList.tail)
+
 
